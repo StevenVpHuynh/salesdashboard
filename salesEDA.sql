@@ -166,8 +166,8 @@ WITH negative_profit_discount AS
 SELECT 	
 	l.State,
 	ROUND(SUM(o.Profit),2) AS total_profit,
-    ROUND(AVG(o.Profit),2) AS Avg_Profit_Per_Order,
-    ROUND(AVG(o.Discount),2) AS Avg_Discount_Per_Order
+    ROUND(AVG(o.Profit),2) AS avg_profit_per_order,
+    ROUND(AVG(o.Discount),2) AS avg_discount_per_order
 FROM orders o
 JOIN location l
     ON o.`Postal Code` = l.`Postal Code`
@@ -175,7 +175,7 @@ GROUP BY l.State
 )
 SELECT 
 	AVG(total_profit),
-    AVG(Avg_discount_per_order)
+    AVG(avg_discount_per_order)
 FROM negative_profit_discount
 WHERE total_profit < 0;
 
@@ -186,9 +186,9 @@ WITH profit_discount AS
 (
 SELECT 	
 	l.State,
-	ROUND(SUM(o.Profit),2) AS total_profit,
-    ROUND(AVG(o.Profit),2) AS Avg_Profit_Per_Order,
-    ROUND(AVG(o.Discount),2) AS Avg_Discount_Per_Order
+    ROUND(SUM(o.Profit),2) AS total_profit,
+    ROUND(AVG(o.Profit),2) AS avg_profit_per_order,
+    ROUND(AVG(o.Discount),2) AS avg_discount_per_order
 FROM orders o
 JOIN location l
     ON o.`Postal Code` = l.`Postal Code`
@@ -197,7 +197,7 @@ ORDER BY total_profit DESC
 )
 SELECT
 	AVG(total_profit),
-	AVG(Avg_discount_per_order)
+	AVG(avg_discount_per_order)
 FROM profit_discount
 WHERE total_profit > 0;
 
