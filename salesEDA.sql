@@ -1,6 +1,6 @@
--- =======================================================================================================================================================================================================================================
+-- ===========================================================================
 -- Exploratory Data Analysis (EDA)
--- =======================================================================================================================================================================================================================================
+-- ===========================================================================
 -- Tables and their Columns
 SELECT * FROM customers; -- Customer ID, Customer Name
 SELECT * FROM location; -- Postal Code, City, State, Region, Country/Region
@@ -14,9 +14,9 @@ SELECT
 	(SELECT COUNT(*) FROM Products) AS total_products, -- 1894 records
 	(SELECT COUNT(*) FROM Location) AS total_locations; -- 631 records
     
--- =======================================================================================================================================================================================================================================
+-- ===========================================================================
 -- Questions and Problems to Solve to Support Business Decisions:
--- =======================================================================================================================================================================================================================================
+-- ===========================================================================
 -- Worst performing product/segment category?
 SELECT 
     p.category,
@@ -37,7 +37,8 @@ JOIN orders o
 GROUP BY p.category
 ORDER BY sum_profit DESC;
 -- Profit: Technology highest performer with 153,415 in Profit, Office Supplies is 126,113 in Profit, Furniture is 20,098 in Profit
--- Interesting to point out that Office supplies has more profit earned than Furniture, even though Furniture has more sales. This is a indicator that offices supplies have a higher profit-margin, and it may be ideal to priortize selling more units of products in office supplies rather than furniture.
+//Interesting to point out that Office supplies has more profit earned than Furniture, even though Furniture has more sales. 
+This is a indicator that offices supplies have a higher profit-margin, and it may be ideal to priortize selling more units of products in office supplies rather than furniture.//
 
 -- Profit margin is big indicator in see performance and viability of selling products:
 SELECT
